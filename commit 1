@@ -1,0 +1,49 @@
+#lang racket
+
+(provide cardsSet)
+(provide listContains)
+(provide differentLists?-1st)
+(provide differentLists?-2nd)
+(provide getSymbol)
+(provide nthCard)
+(provide cardsSet->string)
+(provide checkSymbol)
+(provide modifyListElement)
+(provide rndFn)
+;Constructor del deck de cartas
+;symbols: lista de simbolos
+;numE: cantidad de elementos esperados en cada carta
+;maxC: cantidad maxima de cartas que se busca generar en el set si max <=0 se producen todas las cartas posibles
+;rndFn: funcion de aleatorizacion
+
+#|
+des:
+algoritmo/estrategia:
+d:
+r:
+recursion:
+|#
+(define modifyListElement
+  (lambda (list i n e)
+    (if (null? list)
+        null
+        (if (equal? i n)
+            (cons e (cdr list))
+            (cons (car list) (modifyListElement (cdr list) (+ i 1) n e))))))
+
+;n random entre 0 y cantidad de cartas
+
+#|
+des: crea un set de cartas
+algoritmo/estrategia: dividir en 2 procesos recursivos cada una simula los procesos de los algoritmos con for anidados dados en la pauta
+d:symbols list numE int maxC int rndFn fx
+r:cardsSet(list, int, int, fx) -> list
+recursion: de cola
+|#
+(define cardsSet
+  (lambda (symbols numE maxC rndFn)
+    (if (= numE 0)
+        '()
+        (cutCardsSet (rndFn (append (addNCards (- numE 1) 0 '() symbols) (addN2Cards-1st (- numE 1) 0 '() symbols)) 1 3) maxC))))
+
+;Modificador
