@@ -1,0 +1,12 @@
+#|
+des: completa las cartas con el primer simbolo agregado a la carta
+algoritmo/estrategia: se simulan dos for anidados el primerocompleta las cartas con ese primer simbolo y el tercero agrega los simbolos a cada carta
+d:int n int i int jcardsSet cards list symbols
+r:addN2Cards-1st(int, int, int, cardsSet, symbols) -> cardsSet
+recursion: de cola
+|#
+(define addN2Cards-2nd
+  (lambda (n i j cards symbols)
+    (if(= j n)
+       (addN2Cards-1st n (+ i 1) cards symbols)
+       (addSymbolsN2 n i j 0 (list (getSymbol (+ i 1) 0 symbols)) cards symbols))))
