@@ -1,0 +1,28 @@
+#|
+des: agrega simbolos a una carta es el ciclo anidado de add-n-cards
+algoritmo/estrategia: se agrega el simbolo a una carta, el simbolo que se elije de la lista symbols esta dado por la formula del algoritmo del enunciado
+d:int n int j int k list card cardsSet cards list symbols
+r:addSymbolsN(int, int, cardsSet, symbols) -> cardsSet
+recursion: de cola
+|#
+(define addSymbolsN
+  (lambda (n j k card cards symbols)
+    (if (= k n)
+        (addNCards n (+ j 1) (cons card cards) symbols)
+        (addSymbolsN n j (+ k 1) (append card (list (getSymbol (+ (* n j) (+ k 1)) 0 symbols))) cards symbols))))
+
+#|
+des: crea las n^2 cartas faltantes del cardsset segun el algoritmo del enunciado
+algoritmo/estrategia: se simulan tres for anidados el primero crea una carta con un simbolo el segundo completa las cartas con ese primer simbolo y el tercero agrega los simbolos a cada carta
+d:int n int i cardsSet cards list symbols
+r:addN2Cards-1st(int, int, cardsSet, symbols) -> cardsSet
+recursion: de cola
+|#
+(define addN2Cards-1st
+  (lambda (n i cards symbols)
+    (if(= i n)
+       cards
+       (addN2Cards-2nd n i 0 cards symbols))))
+
+#|
+des:
