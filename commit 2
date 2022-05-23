@@ -1,0 +1,29 @@
+;Modificador
+
+#|
+des: añade carta al set de cartas
+algoritmo/estrategia: verificar si card es valida, si se cumple se agrega, tambn se puede usar cons u otra estrategia para agregar a la lista de cartas cards
+d:symbols cardsSet cards list card
+r:addCard(cardsSet, list) -> cardsSet
+recursion: no aplica
+|#
+(define addCard
+  (lambda (cards card)
+    (if (dobble? (append cards (list card)))
+        (append cards (list card))
+        cards)))
+
+#|
+des: crea las primeras n (orden) cartas
+algoritmo/estrategia: se recorre de 0 hasta n creando n cartas (primer ciclo) y en el segundo ciclo anidado se agregan los simbolos de cada carta, es simular iteraciones con recursion
+d:int n int j cardsSet cards list symbols
+r:addNCards(int, int, cardsSet, symbols) -> cardsSet
+recursion: de cola
+|#
+(define addNCards
+  (lambda (n j cards symbols)
+    (if (= j (+ n 1))
+        cards
+        ;n general que se usa para los calculos, los dos siguientes son modificados asi que no sirven
+        ;n para guarda el n de la 1era it / n para usar para la 2da it / j que es el iterador de la 1era it y que se usa para calcular la posiion del proximo simbolo / 0 es la k que se usa como 2do iterador
+        (addSymbolsN n j 0 (list (getSymbol 0 0 symbols)) cards symbols))))
