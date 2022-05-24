@@ -1,0 +1,35 @@
+#|
+des: agrega simbolos restantes es el tercer ciclo anidado de addN2Cards-1st
+algoritmo/estrategia: se agregan los simbolos en base a las formulas dadas en el algoritmo del enunciado
+d:int n int i int j int k cardsSet cards list symbols
+r:addSymbolsN2(int, int, int, int, cardsSet, symbols) -> cardsSet
+recursion: de cola
+|#
+(define addSymbolsN2
+  (lambda (n i j k card cards symbols)
+    (if (= k n)
+        (addN2Cards-2nd n i (+ j 1) (cons card cards) symbols)
+        (addSymbolsN2 n i j (+ k 1) (append card (list (getSymbol (- (+ (+ (+ n 2) (* n k)) (modulo (+ (* i k) j) n)) 1) 0 symbols))) cards symbols))))
+
+#|
+des: obtiene el simbol n de una lista de simbolos
+algoritmo/estrategia: se itera hasta i = n y se devuelve el simbolo en esa posicion de la lista
+d:int n int i list symbols
+r:getSymbol(int, int, symbols) -> string
+recursion: de cola
+|#
+(define getSymbol
+  (lambda (n i symbols)
+    (if (null? symbols)
+        null
+        (if (= i n)
+            (car symbols)
+            (getSymbol n (+ i 1) (cdr symbols))))))
+
+#|
+des: verifica si un cardsset es valido para el juego dobble
+algoritmo/estrategia: se usan funciones auxiliares que iteran sobre cards, comparan sus simbolos para ver que sean cartas distintas y solo haya 1 simbolo comun
+y ademas comparan los simbolos dentro de la carta para ver que sean distintos
+d:cardsSet cards
+r:dobblle?(cardsSet) -> boolean
+recursion: de cola
