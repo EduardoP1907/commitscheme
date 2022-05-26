@@ -1,0 +1,12 @@
+#|
+des: agrega simbolos restantes es el tercer ciclo anidado de addN2Cards-1st
+algoritmo/estrategia: se agregan los simbolos en base a las formulas dadas en el algoritmo del enunciado
+d:int n int i int j int k cardsSet cards list symbols
+r:addSymbolsN2(int, int, int, int, cardsSet, symbols) -> cardsSet
+recursion: de cola
+|#
+(define addSymbolsN2
+  (lambda (n i j k card cards symbols)
+    (if (= k n)
+        (addN2Cards-2nd n i (+ j 1) (cons card cards) symbols)
+        (addSymbolsN2 n i j (+ k 1) (append card (list (getSymbol (- (+ (+ (+ n 2) (* n k)) (modulo (+ (* i k) j) n)) 1) 0 symbols))) cards symbols))))
