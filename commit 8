@@ -1,0 +1,14 @@
+#|
+des: obtiene el simbol n de una lista de simbolos
+algoritmo/estrategia: se itera hasta i = n y se devuelve el simbolo en esa posicion de la lista
+d:int n int i list symbols
+r:getSymbol(int, int, symbols) -> string
+recursion: de cola
+|#
+(define getSymbol
+  (lambda (n i symbols)
+    (if (null? symbols)
+        null
+        (if (= i n)
+            (car symbols)
+            (getSymbol n (+ i 1) (cdr symbols))))))
