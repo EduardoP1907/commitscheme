@@ -1,0 +1,10 @@
+des: verifica si un cardsset es valido para el juego dobble
+algoritmo/estrategia: se usan funciones auxiliares que iteran sobre cards, comparan sus simbolos para ver que sean cartas distintas y solo haya 1 simbolo comun
+y ademas comparan los simbolos dentro de la carta para ver que sean distintos
+d:cardsSet cards
+r:dobblle?(cardsSet) -> boolean
+recursion: de cola
+|#
+(define dobble?
+  (lambda (cards)
+    (dobble?-1st cards 0 (numCards cards) (listLength (car cards) 0) true)))
