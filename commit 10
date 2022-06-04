@@ -1,0 +1,13 @@
+des: primera iteracion, empieza a recorrer las cartas para verificar cada condicion
+algoritmo/estrategia: se recorren las cartas, se compara consigo misma y luego con el resto de las cartas (el for anidado recorre el resto de las cartas)
+d:cardsSet cards int i int num_cards int num_card_symbols boolean bool
+r:dobble?-1st(cardsSet, int, int, int, boolean) -> boolean
+recursion: de cola
+|#
+(define dobble?-1st
+  (lambda(cards i num_cards num_card_symbols bool)
+    (if (or (= i num_cards) (eq? bool false))
+        bool
+        (if (eq? (differentCardSymbols?-1st (nthCard cards i) 0 (listLength (nthCard cards i) 0) true) true)
+            (dobble?-2nd cards i (+ i 1) num_cards num_card_symbols true)
+            (dobble?-1st cards (+ i 1) num_cards num_card_symbols false)))))
